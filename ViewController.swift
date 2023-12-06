@@ -51,9 +51,11 @@ class ViewController: UIViewController {
         
         // ２つ目以降の演算子が入力された場合（計算可能）
         if let firstNum = firstNumber, let currentOperation = currentOperation {
-            let result = performOperation(firstNum: firstNum, secondNum: number, operation: currentOperation)
-            displayLabel.text = String(result)
-            firstNumber = result
+            if currentState != .inputOperation {
+                let result = performOperation(firstNum: firstNum, secondNum: number, operation: currentOperation)
+                displayLabel.text = String(result)
+                firstNumber = result
+            }
         // １つ目の演算子が入力された場合（計算不可能）
         } else {
             firstNumber = number
@@ -104,4 +106,3 @@ class ViewController: UIViewController {
     }
 
 }
-
